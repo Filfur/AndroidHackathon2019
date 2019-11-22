@@ -1,4 +1,5 @@
-import android.content.Context
+package com.noteamname.androidhackathon.library.adapters
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +10,23 @@ import com.noteamname.androidhackathon.library.models.Book
 
 class LibraryAdapter(
     private val books: List<Book>,
-    private val clickListener: (position: Int) -> Unit
-) : RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
+    private val listener: LibraryAdapterListener
+) : RecyclerView.Adapter<LibraryAdapter.BookViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
+        return BookViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.fragment_library_item,
                 parent,
                 false
-            ), clickListener
+            )
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            listener.onBookSelected(books[holder.adapterPosition])
+        }
         holder.bind(getItem(position))
     }
 
@@ -30,24 +34,18 @@ class LibraryAdapter(
 
     private fun getItem(position: Int): Book = books[position]
 
-    class ViewHolder(
-        itemView: View,
-        listener: (position: Int) -> Unit
+    class BookViewHolder(
+        itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
         private val title: TextView = itemView.findViewById(R.id.title)
 
-        init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    listener(position)
-                }
-            }
-        }
-
         fun bind(book: Book) {
             title.text = book.title
         }
+    }
+
+    interface LibraryAdapterListener {
+        fun onBookSelected(book: Book)
     }
 }

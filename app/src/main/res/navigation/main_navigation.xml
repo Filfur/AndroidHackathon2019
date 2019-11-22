@@ -3,19 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/destination_toilet_roll">
+    app:startDestination="@id/destination_library">
 
     <fragment
         android:id="@+id/destination_toilet_roll"
         android:name="com.noteamname.androidhackathon.toiletRoll.ToiletRollFragment"
         android:label="ToiletRollFragment"
-        tools:layout="@layout/fragment_toilet_roll">
-        <action
-            android:id="@+id/action_destination_toilet_roll_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_toilet_roll"/>
     <fragment
-        android:id="@+id/libraryFragment"
+        android:id="@+id/destination_library"
         android:name="com.noteamname.androidhackathon.library.LibraryFragment"
-        android:label="LibraryFragment" />
+        android:label="LibraryFragment"
+        tools:layout="@layout/fragment_library">
+        <action
+            android:id="@+id/action_toilet_roll"
+            app:destination="@id/destination_toilet_roll" />
+    </fragment>
 </navigation>
