@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/destination_toilet_roll">
+
+    <fragment
+        android:id="@+id/destination_toilet_roll"
+        android:name="com.noteamname.androidhackathon.toiletRoll.ToiletRollFragment"
+        android:label="ToiletRollFragment"
+        tools:layout="@layout/fragment_toilet_roll">
+        <action
+            android:id="@+id/action_destination_toilet_roll_to_placeholder"
+            app:destination="@id/placeholder" />
+    </fragment>
+    <fragment android:id="@+id/placeholder" />
+</navigation>

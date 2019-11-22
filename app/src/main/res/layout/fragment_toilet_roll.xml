@@ -7,12 +7,20 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="200dp"/>
+        android:id="@+id/imageView"
+        android:layout_width="70dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="300dp"
-        android:layout_height="729dp"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="1dp" />
+        android:id="@+id/toilet_roll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        tools:listitem="@layout/fragment_toilet_roll_item"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
