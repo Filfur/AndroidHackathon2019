@@ -2,26 +2,27 @@ package com.noteamname.androidhackathon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.noteamname.androidhackathon.library.LibraryFragment
+import androidx.activity.addCallback
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
+
+    private val navController by lazy { findNavController(R.id.nav_host_fragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // val books = BooksStorage.getBooksList()
-        // val adapter = BooksAdapter(this, books) { position ->
-        //     showBookFragment(books, position)
-        // }
+        onBackPressedDispatcher.addCallback(this) {
+            navController.popBackStack() || super.onSupportNavigateUp() || run {
+                finish()
+                true
+            }
+        }
+    }
 
-        // val list = findViewById<RecyclerView>(R.id.moviesList)
-        // list.adapter = adapter
-        // list.layoutManager = GridLayoutManager(this, 3)
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
-            .add(R.id.container, LibraryFragment())
-            .commit()
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
