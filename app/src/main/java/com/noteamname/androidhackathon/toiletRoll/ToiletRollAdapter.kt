@@ -6,14 +6,25 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.noteamname.androidhackathon.R
+import com.noteamname.androidhackathon.toiletRoll.interfaces.ItemTouchHelperAdapter
 import com.noteamname.androidhackathon.toiletRoll.models.RollPiece
 import kotlinx.android.synthetic.main.fragment_toilet_roll_item.view.*
+import java.util.*
 
-class ToiletRollAdapter(var items: List<RollPiece>) : RecyclerView.Adapter<ToiletRollAdapter.RollViewHolder>() {
+class ToiletRollAdapter(var items: LinkedList<RollPiece>)
+    : RecyclerView.Adapter<ToiletRollAdapter.RollViewHolder>(), ItemTouchHelperAdapter {
 
     fun updateItems(newItems: List<RollPiece>) {
-        items = newItems
+        items = LinkedList(newItems)
         notifyDataSetChanged()
+    }
+
+    fun addItems(newItems: List<RollPiece>) {
+        newItems.forEach { item ->
+            items.addFirst(item)
+        }
+        notifyDataSetChanged()
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RollViewHolder {
@@ -43,5 +54,12 @@ class ToiletRollAdapter(var items: List<RollPiece>) : RecyclerView.Adapter<Toile
 
     interface ToiletRollListener {
         fun onSelected(item: RollPiece)
+    }
+
+    override fun onItemDismiss(position: Int) {
+        (position downTo 0).forEach { index ->
+            items.removeAt(index)
+            notifyItemRemoved(index)
+        }
     }
 }
