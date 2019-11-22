@@ -20,10 +20,6 @@ class LibraryFragment : Fragment(), LibraryAdapter.LibraryAdapterListener {
         LibraryAdapter(BooksStorage.getBooksList(), this)
     }
 
-    private val layoutManager: GridLayoutManager by lazy {
-        GridLayoutManager(requireContext(), 3)
-    }
-
     private val navController: NavController by lazy {
         findNavController()
     }
@@ -36,7 +32,7 @@ class LibraryFragment : Fragment(), LibraryAdapter.LibraryAdapterListener {
         val view = inflater.inflate(R.layout.fragment_library, container, false)
 
         view.findViewById<RecyclerView>(R.id.booksList).apply {
-            layoutManager = this@LibraryFragment.layoutManager
+            layoutManager = GridLayoutManager(requireContext(), 3)
             adapter = this@LibraryFragment.adapter
         }
 

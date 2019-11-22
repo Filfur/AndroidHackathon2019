@@ -1,7 +1,7 @@
 package com.noteamname.androidhackathon
 
 import android.app.Application
-import com.noteamname.androidhackathon.toiletRoll.ToiletRollViewModel
+import com.noteamname.androidhackathon.toiletRoll.viewModels.ToiletRollViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
