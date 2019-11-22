@@ -11,8 +11,10 @@ import com.noteamname.androidhackathon.toiletRoll.models.RollPiece
 import kotlinx.android.synthetic.main.fragment_toilet_roll_item.view.*
 import java.util.*
 
-class ToiletRollAdapter(var items: LinkedList<RollPiece>)
+class ToiletRollAdapter()
     : RecyclerView.Adapter<ToiletRollAdapter.RollViewHolder>(), ItemTouchHelperAdapter {
+
+    var items: LinkedList<RollPiece> = LinkedList()
 
     fun updateItems(newItems: List<RollPiece>) {
         items = LinkedList(newItems)

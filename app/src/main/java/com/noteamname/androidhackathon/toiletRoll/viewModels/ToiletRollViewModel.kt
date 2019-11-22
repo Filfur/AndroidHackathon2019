@@ -11,13 +11,20 @@ class ToiletRollViewModel: ViewModel() {
         const val PAGE_SIZE = 4
     }
 
+    private var pageCount = -1
+
     val livePieces = MutableLiveData<List<RollPiece>>()
 
-    fun fetchRollPieces(page: Int) {
-        if ((page + 1) * PAGE_SIZE > RollPieceHelper.getPeaces().count()) {
+    init {
+        fetchRollPieces()
+    }
+
+    fun fetchRollPieces() {
+        ++pageCount
+        if ((pageCount + 1) * PAGE_SIZE > RollPieceHelper.getPeaces().count()) {
             return
         }
-        val pieces = RollPieceHelper.getPeaces().subList(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
+        val pieces = RollPieceHelper.getPeaces().subList(pageCount * PAGE_SIZE, (pageCount + 1) * PAGE_SIZE)
 
         livePieces.postValue(pieces)
     }
