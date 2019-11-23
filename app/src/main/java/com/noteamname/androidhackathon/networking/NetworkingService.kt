@@ -5,8 +5,7 @@ import com.noteamname.androidhackathon.networking.models.Book
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import retrofit2.Retrofit
-
-
+import java.net.SocketTimeoutException
 
 
 class NetworkingService {
@@ -16,12 +15,17 @@ class NetworkingService {
             .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
             .build()
 
-        val service = retrofit.create<FundamentalsService>(FundamentalsService::class.java)
-        val response = service.getBooks()
-        return if (response.isSuccessful) {
-            response.body() ?: listOf<Book>()
-        } else {
-            listOf<Book>()
+        try {
+            val service = retrofit.create<FundamentalsService>(FundamentalsService::class.java)
+
+            val response = service.getBooks()
+            return if (response.isSuccessful) {
+                response.body() ?: listOf()
+            } else {
+                listOf()
+            }
+        } catch (ex: SocketTimeoutException) {
+            return listOf()
         }
     }
 }

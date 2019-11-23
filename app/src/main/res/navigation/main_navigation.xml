@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/destination_library">
+    app:startDestination="@id/destination_welcom">
 
     <fragment
         android:id="@+id/destination_toilet_roll"
@@ -18,5 +18,14 @@
         <action
             android:id="@+id/action_toilet_roll"
             app:destination="@id/destination_toilet_roll" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_welcom"
+        android:name="com.noteamname.androidhackathon.welcome.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_library"
+            app:destination="@id/destination_library" />
     </fragment>
 </navigation>
