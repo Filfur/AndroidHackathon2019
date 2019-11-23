@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.noteamname.androidhackathon.R
-import com.noteamname.androidhackathon.library.models.Book
+import com.noteamname.androidhackathon.networking.models.Book
 
 class LibraryAdapter(
-    private val books: List<Book>,
     private val listener: LibraryAdapterListener
 ) : RecyclerView.Adapter<LibraryAdapter.BookViewHolder>() {
+
+    private var books: List<Book> = listOf()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         return BookViewHolder(
@@ -21,6 +23,11 @@ class LibraryAdapter(
                 false
             )
         )
+    }
+
+    fun updateItems(items: List<Book>) {
+        books = items
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {

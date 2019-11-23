@@ -14,16 +14,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/roll_view"
         app:layout_constraintDimensionRatio="H, 2:1"
         app:layout_constraintEnd_toEndOf="@+id/toilet_roll"
-        app:layout_constraintTop_toTopOf="@+id/roll_view" />
+        app:layout_constraintTop_toTopOf="@+id/roll_view"
+        tools:ignore="ContentDescription" />
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/roll_body"
         app:layout_constraintBottom_toBottomOf="@+id/roll_view"
         app:layout_constraintEnd_toEndOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/roll_view" />
+        app:layout_constraintTop_toTopOf="@+id/roll_view"
+        tools:ignore="ContentDescription" />
 
     <com.noteamname.androidhackathon.toiletRoll.views.RollView
         android:id="@+id/roll_view"
@@ -38,6 +41,7 @@
         android:id="@+id/toilet_roll"
         android:layout_width="240dp"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/roll_view"
         app:layout_constraintTop_toTopOf="@+id/guideline"
@@ -50,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="100dp" />
+        app:layout_constraintGuide_begin="120dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -68,5 +72,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/roll_view_end"
         app:layout_constraintStart_toStartOf="@+id/roll_view_end"
         app:layout_constraintEnd_toEndOf="@+id/roll_view_end" />
+
+    <ImageView
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/roll_cap"
+        app:layout_constraintBottom_toTopOf="@+id/toilet_roll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
