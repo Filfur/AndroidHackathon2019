@@ -40,10 +40,10 @@ class ToiletRollFragment : Fragment(), ToiletRollAdapter.ToiletRollListener {
 
     fun recalculateRollView(recyclerView: RecyclerView) {
         val offset = recyclerView.computeVerticalScrollOffset()
-        val height = recyclerView.height
+        val extent = recyclerView.computeVerticalScrollExtent()
         val range = range ?: recyclerView.computeVerticalScrollRange()
 
-        val percentage = 1 - offset / (range.toFloat() - height)
+        val percentage = 1 - offset / (range.toFloat() - extent)
 
         roll_view.progress = percentage
     }
@@ -84,7 +84,8 @@ class ToiletRollFragment : Fragment(), ToiletRollAdapter.ToiletRollListener {
     }
 
     override fun onItemDismissed() {
-//        range = toilet_roll.computeVerticalScrollRange()
+        range = range ?: toilet_roll.computeVerticalScrollRange()
         recalculateRollView(toilet_roll)
+        toilet_roll.scrollToPosition(0)
     }
 }

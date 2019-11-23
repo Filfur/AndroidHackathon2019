@@ -5,10 +5,11 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image_toilet_roll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:scaleType="fitCenter"
         android:src="@drawable/version1"
         app:layout_constraintDimensionRatio="1:1"
@@ -29,14 +30,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/image_toilet_roll" />
 
     <Button
         android:id="@+id/button_start"
-        android:layout_width="274dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="40sp"
+        android:layout_marginEnd="40sp"
         android:layout_height="65dp"
-        android:layout_marginTop="32dp"
-        android:text="start a fascinating reading"
+        android:background="@drawable/button_background"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:text="Start a fascinating reading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

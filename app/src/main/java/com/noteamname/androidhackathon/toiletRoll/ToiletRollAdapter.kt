@@ -62,6 +62,7 @@ class ToiletRollAdapter(
 
     override fun onItemDismiss(position: Int) {
         (position downTo 0).forEach { index ->
+
             items.removeAt(index)
             notifyItemRemoved(index)
             listener.onItemDismissed()

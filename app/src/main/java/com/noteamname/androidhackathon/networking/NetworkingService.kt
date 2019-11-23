@@ -6,16 +6,17 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import retrofit2.Retrofit
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 
 class NetworkingService {
     suspend fun getBooks(): List<Book> {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://white-skunk-73.localtunnel.me/")
-            .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
-            .build()
-
         try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://serious-rattlesnake-38.localtunnel.me/")
+                .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
+                .build()
+
             val service = retrofit.create<FundamentalsService>(FundamentalsService::class.java)
 
             val response = service.getBooks()
@@ -25,6 +26,8 @@ class NetworkingService {
                 listOf()
             }
         } catch (ex: SocketTimeoutException) {
+            return listOf()
+        } catch (ex: UnknownHostException) {
             return listOf()
         }
     }

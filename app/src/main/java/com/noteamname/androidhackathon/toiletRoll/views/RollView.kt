@@ -34,13 +34,21 @@ class RollView @JvmOverloads constructor(
         style = Paint.Style.STROKE
         strokeWidth = 2f
         strokeCap = Paint.Cap.ROUND
-        color = Color.BLACK
+        color = Color.GRAY
     }
 
     val rollBackPaint = Paint().apply {
         isAntiAlias = true
         style = Paint.Style.FILL
         color = Color.WHITE
+    }
+
+    val sleevePaint = Paint().apply {
+        isAntiAlias = true
+        style = Paint.Style.FILL
+        strokeWidth = 2f
+        strokeCap = Paint.Cap.ROUND
+        color = Color.parseColor("#C4C4C4")
     }
 
 
@@ -81,6 +89,7 @@ class RollView @JvmOverloads constructor(
         val top = (measuredHeight - sleeveHeight) / 2
         val right = measuredWidth - left
         val bottom = measuredHeight - top
+        canvas.drawArc(left, top, right, bottom, 0f, 360f, false, sleevePaint)
         canvas.drawArc(left, top, right, bottom, 0f, 360f, false, arcPaint)
     }
 

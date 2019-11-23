@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
                     setDisplayHomeAsUpEnabled(false)
                 }
             }
+
+            if (destination.id == R.id.destination_welcom) {
+                supportActionBar?.hide()
+            } else {
+                supportActionBar?.show()
+            }
         }
 
         onBackPressedDispatcher.addCallback(this) {
