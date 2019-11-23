@@ -37,6 +37,12 @@ class RollView @JvmOverloads constructor(
         color = Color.BLACK
     }
 
+    val rollBackPaint = Paint().apply {
+        isAntiAlias = true
+        style = Paint.Style.FILL
+        color = Color.WHITE
+    }
+
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val desiredWidth = (suggestedMinimumWidth + paddingStart + paddingEnd)
@@ -52,6 +58,7 @@ class RollView @JvmOverloads constructor(
         val lineCounts = ((1f - progress) * 10).toInt()
         val lineWidth = (measuredWidth - sleeveWidth) / 2 / lineCounts
         val lineHeight = (measuredHeight - sleeveHeight) / 2 / lineCounts
+        canvas.drawArc(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(),  0f, 360f, false, rollBackPaint)
         (0..lineCounts).forEachIndexed { index, i ->
             val left = index * lineWidth
             val top = index * lineHeight

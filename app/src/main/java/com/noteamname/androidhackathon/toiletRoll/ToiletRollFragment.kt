@@ -30,8 +30,16 @@ class ToiletRollFragment : Fragment() {
             super.onScrollStateChanged(recyclerView, newState)
             val lastVisibleItemPosition: Int = (toilet_roll.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
             if (lastVisibleItemPosition == adapter.itemCount - 1) {
-                viewModel.fetchRollPieces()
+//                viewModel.fetchRollPieces()
             }
+            val offset = recyclerView.computeVerticalScrollOffset()
+//            val extent = recyclerView.computeVerticalScrollExtent()
+            val height = recyclerView.height
+            val range = recyclerView.computeVerticalScrollRange()
+
+            val percentage = 1 - offset / (range.toFloat() - height)
+
+            roll_view.progress = percentage
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -48,7 +56,8 @@ class ToiletRollFragment : Fragment() {
     }
 
     private val rollPiecesObserver = Observer<List<RollPiece>> { pieces ->
-        adapter.addItems(pieces)
+        adapter.addItems(pieces.reversed())
+        toilet_roll.smoothScrollToPosition(0)
     }
 
     override fun onCreateView(

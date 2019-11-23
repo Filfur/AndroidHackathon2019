@@ -1,6 +1,7 @@
 package com.noteamname.androidhackathon
 
 import android.app.Application
+import com.noteamname.androidhackathon.networking.NetworkingService
 import com.noteamname.androidhackathon.toiletRoll.viewModels.ToiletRollViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -10,7 +11,8 @@ import org.koin.dsl.module
 
 class LibApplication : Application() {
     private val koinModule = module {
-        viewModel { ToiletRollViewModel() }
+        single { NetworkingService() }
+        viewModel { ToiletRollViewModel(get()) }
     }
 
     override fun onCreate() {

@@ -6,6 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/roll_view_end"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/roll_end"
+        app:layout_constraintBottom_toBottomOf="@+id/roll_view"
+        app:layout_constraintDimensionRatio="H, 2:1"
+        app:layout_constraintEnd_toEndOf="@+id/toilet_roll"
+        app:layout_constraintTop_toTopOf="@+id/roll_view" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/roll_body"
+        app:layout_constraintBottom_toBottomOf="@+id/roll_view"
+        app:layout_constraintEnd_toEndOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/roll_view" />
+
     <com.noteamname.androidhackathon.toiletRoll.views.RollView
         android:id="@+id/roll_view"
         android:layout_width="100dp"
@@ -17,7 +36,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/toilet_roll"
-        android:layout_width="200dp"
+        android:layout_width="240dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/roll_view"
@@ -38,6 +57,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="82dp" />
+        app:layout_constraintGuide_begin="60dp" />
+
+    <View
+        android:id="@+id/guideline3"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@+id/roll_view_end"
+        app:layout_constraintBottom_toBottomOf="@+id/roll_view_end"
+        app:layout_constraintStart_toStartOf="@+id/roll_view_end"
+        app:layout_constraintEnd_toEndOf="@+id/roll_view_end" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
