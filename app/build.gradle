@@ -69,10 +69,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 
-    // Ads integration
-    implementation 'com.adjust.sdk:adjust-android:4.18.1'
-    implementation 'com.android.installreferrer:installreferrer:1.0'
-    implementation 'com.google.android.gms:play-services-analytics:17.0.0'
 
     // Networking
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'

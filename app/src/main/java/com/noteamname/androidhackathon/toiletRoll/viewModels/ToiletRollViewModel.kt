@@ -1,31 +1,32 @@
 package com.noteamname.androidhackathon.toiletRoll.viewModels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.noteamname.androidhackathon.networking.NetworkingService
+import com.noteamname.androidhackathon.networking.models.Book
 import com.noteamname.androidhackathon.toiletRoll.models.RollPiece
 import com.noteamname.androidhackathon.toiletRoll.models.RollPieceHelper
+import kotlinx.coroutines.launch
 
-class ToiletRollViewModel: ViewModel() {
-    companion object {
-        const val PAGE_SIZE = 4
-    }
-
-    private var pageCount = -1
+class ToiletRollViewModel(
+    private val networkingService: NetworkingService
+): ViewModel() {
 
     val livePieces = MutableLiveData<List<RollPiece>>()
 
-    init {
-        fetchRollPieces()
+    val liveBooks = MutableLiveData<List<Book>>()
+
+//    init {
+//        fetchBooks()
+//    }
+
+    fun selectBook(book: Book) {
+        livePieces.postValue(book.text.map { RollPiece(it) })
     }
 
-    fun fetchRollPieces() {
-        ++pageCount
-        if ((pageCount + 1) * PAGE_SIZE > RollPieceHelper.getPeaces().count()) {
-            return
+    fun fetchBooks() {
+        viewModelScope.launch {
+            val books = networkingService.getBooks()
+            liveBooks.postValue(books)
         }
-        val pieces = RollPieceHelper.getPeaces().subList(pageCount * PAGE_SIZE, (pageCount + 1) * PAGE_SIZE)
-
-        livePieces.postValue(pieces)
     }
 }

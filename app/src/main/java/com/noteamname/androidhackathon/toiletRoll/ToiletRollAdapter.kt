@@ -11,7 +11,9 @@ import com.noteamname.androidhackathon.toiletRoll.models.RollPiece
 import kotlinx.android.synthetic.main.fragment_toilet_roll_item.view.*
 import java.util.*
 
-class ToiletRollAdapter()
+class ToiletRollAdapter(
+    val listener: ToiletRollListener
+)
     : RecyclerView.Adapter<ToiletRollAdapter.RollViewHolder>(), ItemTouchHelperAdapter {
 
     var items: LinkedList<RollPiece> = LinkedList()
@@ -55,13 +57,15 @@ class ToiletRollAdapter()
     }
 
     interface ToiletRollListener {
-        fun onSelected(item: RollPiece)
+        fun onItemDismissed()
     }
 
     override fun onItemDismiss(position: Int) {
         (position downTo 0).forEach { index ->
+
             items.removeAt(index)
             notifyItemRemoved(index)
+            listener.onItemDismissed()
         }
     }
 }

@@ -34,7 +34,21 @@ class RollView @JvmOverloads constructor(
         style = Paint.Style.STROKE
         strokeWidth = 2f
         strokeCap = Paint.Cap.ROUND
-        color = Color.BLACK
+        color = Color.GRAY
+    }
+
+    val rollBackPaint = Paint().apply {
+        isAntiAlias = true
+        style = Paint.Style.FILL
+        color = Color.WHITE
+    }
+
+    val sleevePaint = Paint().apply {
+        isAntiAlias = true
+        style = Paint.Style.FILL
+        strokeWidth = 2f
+        strokeCap = Paint.Cap.ROUND
+        color = Color.parseColor("#C4C4C4")
     }
 
 
@@ -52,6 +66,7 @@ class RollView @JvmOverloads constructor(
         val lineCounts = ((1f - progress) * 10).toInt()
         val lineWidth = (measuredWidth - sleeveWidth) / 2 / lineCounts
         val lineHeight = (measuredHeight - sleeveHeight) / 2 / lineCounts
+        canvas.drawArc(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(),  0f, 360f, false, rollBackPaint)
         (0..lineCounts).forEachIndexed { index, i ->
             val left = index * lineWidth
             val top = index * lineHeight
@@ -74,6 +89,7 @@ class RollView @JvmOverloads constructor(
         val top = (measuredHeight - sleeveHeight) / 2
         val right = measuredWidth - left
         val bottom = measuredHeight - top
+        canvas.drawArc(left, top, right, bottom, 0f, 360f, false, sleevePaint)
         canvas.drawArc(left, top, right, bottom, 0f, 360f, false, arcPaint)
     }
 

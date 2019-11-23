@@ -3,23 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:background="?selectableItemBackground"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:layout_height="150dp">
+
+    <ImageView
+        android:id="@+id/image_toilet_roll"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:src="@drawable/book_item_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:lineSpacingMultiplier="1.5"
-        android:lines="2"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Android Fundamentals Fun Hackathon 2019 No Team Name" />
+        app:layout_constraintEnd_toEndOf="@+id/image_toilet_roll"
+        app:layout_constraintStart_toStartOf="@+id/image_toilet_roll"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
