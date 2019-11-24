@@ -86,6 +86,6 @@ class ToiletRollFragment : Fragment(), ToiletRollAdapter.ToiletRollListener {
     override fun onItemDismissed() {
         range = range ?: toilet_roll.computeVerticalScrollRange()
         recalculateRollView(toilet_roll)
-        toilet_roll.scrollToPosition(0)
+//        toilet_roll.smoothScrollToPosition(0)
     }
 }
